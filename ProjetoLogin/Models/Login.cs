@@ -1,6 +1,6 @@
 ﻿namespace ProjetoLogin.Models
 {
-    public class Usuario
+    public class Login
     {
         public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;
