@@ -10,7 +10,7 @@ namespace ProjetoLogin.Repositorio
 
         public ProdutoRepositorio(IConfiguration config)
         {
-            _connectionString = config.GetConnectionString("Default");
+            _connectionString = config.GetConnectionString("Conexao");
         }
 
         //Método lista todos

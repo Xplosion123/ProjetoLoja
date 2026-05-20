@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProjetoExemploTop</title>
+    <title>@ViewData["Title"] - ProjetoLoja</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
     @* IMPORTANTE: Link para os ícones do Bootstrap *@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ProjetoExemploTop.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProjetoLoja.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand fw-bold text-primary" asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-shop me-1"></i> ProjetoExemploTop
+                    <i class="bi bi-shop me-1"></i> ProjetoLoja
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -64,9 +64,10 @@
                         {
                             @* Se NÃO estiver logado, mostra o botão para Entrar *@
                             <li class="nav-item">
-                                <a class="btn btn-primary btn-sm px-4 fw-bold shadow-sm" asp-controller="Usuario" asp-action="Logar">
+                                <a class="btn btn-primary btn-sm px-4 fw-bold shadow-sm" asp-controller="Usuario" asp-action="Login">
                                     <i class="bi bi-person-lock me-1"></i> Entrar
                                 </a>
+
                             </li>
                         }
                     </ul>

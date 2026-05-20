@@ -1,5 +1,85 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<ProjetoLogin.Models.Produto>
+
 @{
+    ViewData["Title"] = "Gestão de Estoque";
 }
+<!--CHAMANDO O CDN DO BOOTSTRAP NESTA PAGÁINS-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
+            <h4 class="mb-0"><i class="bi bi-box-seam me-2"></i> Estoque de Produtos</h4>
+            <a asp-controller="Produto" asp-action="Criar" class="btn btn-success fw-bold shadow-sm">
+                <i class="bi bi-plus-lg"></i> Novo Produto
+            </a>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4" style="width: 80px;">#ID</th>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th class="text-center">Preço</th>
+                            <th class="text-center pe-4" style="width: 200px;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4 text-muted small">@item.Id</td>
+                                <td>
+                                    <span class="fw-bold text-dark">@item.Nome</span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-info text-dark opacity-75">Geral</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-success fw-bold">@item.Preco.ToString("C")</span>
+                                </td>
+                                <td class="text-center pe-4">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a asp-controller="Produto" asp-action="Editar" asp-route-id="@item.Id"
+                                               class="btn btn-outline-warning btn-sm shadow-sm" title="Editar">
+                                            <i class="bi bi-pencil"></i> Editar
+                                        </a>
+
+                                        @* O botão excluir só aparece para quem tem Nível Admin *@
+                                        @if (User.HasClaim("NivelAcesso", "Admin"))
+                                        {
+                                            <form asp-controller="Produto" asp-action="Excluir" asp-route-id="@item.Id"
+                                                  method="post" onsubmit="return confirm('Excluir @item.Nome permanentemente?')">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-outline-danger btn-sm shadow-sm" title="Excluir">
+                                                    <i class="bi bi-trash"></i> Excluir
+                                                </button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            @* Mostra um cadeado ou texto para usuários comuns *@
+                                            <button class="btn btn-sm btn-light disabled" title="Sem permissão">
+                                                <i class="bi bi-lock"></i>
+                                            </button>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @if (!Model.Any())
+        {
+            <div class="card-footer text-center py-5 bg-white">
+                <i class="bi bi-inbox text-muted display-1"></i>
+                <p class="text-muted mt-3">Nenhum produto encontrado no estoque.</p>
+            </div>
+        }
+    </div>
+</div>

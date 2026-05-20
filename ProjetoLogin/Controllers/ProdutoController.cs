@@ -25,7 +25,7 @@ namespace ProjetoLogin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Criar() => View();
+        public IActionResult Criar() => View("CadastrarProduto");
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -52,6 +52,7 @@ namespace ProjetoLogin.Controllers
         {
             var produto = _produtoRepositorio.ObterPorId(id);
             if (produto == null) return NotFound();
+            return View("EditarProduto", produto);
 
             // Mapeamento: Entidade -> ViewModel
             var viewModel = new Produto

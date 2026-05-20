@@ -21,11 +21,11 @@ namespace ProjetoLogin.Controllers
 
         //Abre a tela de login (o formulário) quando você acessa o site.
         [HttpGet]
-        public IActionResult Logar() => View(); // Abre a tela de login
+        public IActionResult Login() => View(); // Abre a tela de login
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logar(Login model) // Alterado para LoginViewModel
+        public async Task<IActionResult> Login(Login model) // Alterado para LoginViewModel
         {
             // Verifica se os campos Email e Senha foram preenchidos conforme as regras da ViewModel
             if (!ModelState.IsValid) return View(model);
@@ -67,7 +67,7 @@ namespace ProjetoLogin.Controllers
             //Remove o "crachá" (deleta o Cookie) do navegador do usuário
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             //Manda o usuário de volta para a tela de login.
-            return RedirectToAction("Logar");
+            return RedirectToAction("Login");
         }
     }
 }
