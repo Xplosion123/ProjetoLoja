@@ -1,6 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoLogin.Models;
-using ProjetoLogin.Interfaces;
 
 namespace ProjetoLogin.Repositorio
 {
